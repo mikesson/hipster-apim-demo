@@ -23,6 +23,8 @@ export CLUSTER_NAME=hipster-demo1
 
 gcloud config set project ${PROJECT_ID}
 
+#(for the next step, you may need to enable the Kubernetes Engine API via https://console.cloud.google.com/apis/library/container.googleapis.com?project={project_id})
+
 gcloud container clusters create ${CLUSTER_NAME} \
     --machine-type=n1-standard-2 \
     --num-nodes 3 \
@@ -92,7 +94,7 @@ kubectl apply -f istio-install/handler.yaml
 kubectl apply -f demo/rule.yaml
 
 #Get List of Products
-curl $GATEWAY_URL/products
+curl -v $GATEWAY_URL/products
 
 #The above will fail with HTTP 403
 ```

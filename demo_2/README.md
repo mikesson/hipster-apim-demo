@@ -8,6 +8,8 @@ currencyservice.default.svc.cluster.local
 cartservice.default.svc.cluster.local
 ```
 
+(Note that for this demo, remove the rule from the previous steps with `kubectl delete -f demo/rule.yaml`)
+
 Now, we will continue to use the Hipster Shop REST API to create a new digital channel - a chat/voice assistant.
 
 
