@@ -23,7 +23,7 @@ export CLUSTER_NAME=hipster-demo1
 
 gcloud config set project ${PROJECT_ID}
 
-#(for the next step, you may need to enable the Kubernetes Engine API via https://console.cloud.google.com/apis/library/container.googleapis.com?project={project_id})
+#for the next step, you may need to enable the Kubernetes Engine API via #https://console.cloud.google.com/apis/library/container.googleapis.com?project={project_id}
 
 gcloud container clusters create ${CLUSTER_NAME} \
     --machine-type=n1-standard-2 \

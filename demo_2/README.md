@@ -1,4 +1,5 @@
-(continued story from https://github.com/mukundha/hipster-apim-demo / https://github.com/mukundha/hipster-apim-demo/tree/istio-grpc-transcode)
+# Voice/Chat Assistant Demo
+*Exposing the REST API via Apigee and building a voice/chat client app* 
 
 Previously, the Hipster Shop Website has been spun up and configured as an Apigee-registered application with an associated API Key consuming an API Product which contains services such as:
 ```
@@ -8,9 +9,9 @@ currencyservice.default.svc.cluster.local
 cartservice.default.svc.cluster.local
 ```
 
-(Note that for this demo, remove the rule from the previous steps with `kubectl delete -f demo/rule.yaml`)
-
 Now, we will continue to use the Hipster Shop REST API to create a new digital channel - a chat/voice assistant.
+
+(Note that for this demo, remove the rule from the previous steps with `kubectl delete -f demo/rule.yaml`)
 
 
 # Prerequisites:
