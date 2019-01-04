@@ -143,4 +143,4 @@ cartservice.default.svc.cluster.local
 ![alt text](images/hipster_app-landing.png)
 
 
-As a next step, you can expose the REST API via Apigee and build a chat/voice assistant app. ![by following these steps](https://github.com/mukundha/hipster-apim-demo/tree/master/demo2).
+As a next step, you can expose the REST API via Apigee and build a chat/voice assistant app. [by following these steps](https://github.com/mukundha/hipster-apim-demo/tree/master/demo2).
