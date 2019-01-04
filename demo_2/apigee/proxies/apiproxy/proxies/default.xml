@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description></Description>
+    <FaultRules>
+        <FaultRule name="FailedToResolveAPIKey">
+            <Condition>(fault.name Matches "FailedToResolveAPIKey") </Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-FailedToResolveAPIKey</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="GetAds">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/ads") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="AddItem">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/carts") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetCart">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/carts/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="EmptyCart">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/carts/*") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="GetSupportedCurrencies">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/currencies") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Convert">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/currencies/convert/*/{to_code}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="PlaceOrder">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/orders/checkout") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Charge">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/payments") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="ListProducts">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="SearchProducts">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetProduct">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="ListRecommendations">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/recommendations/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="SendOrderConfirmation">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/sendmail") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="ShipOrder">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shipping") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="GetQuote">
+            <Description></Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/shipping/quote") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="OptionsPreflight">
+            <Description></Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>add-cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS"</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>request.verb != "OPTIONS"</Condition>
+                <FaultRules/>
+                <Name>Verify-API-Key</Name>
+            </Step>
+            <Step>
+                <Condition>request.verb != "OPTIONS"</Condition>
+                <FaultRules/>
+                <Name>remove-header-authorization</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/api/hipstershop/v1</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS"</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
