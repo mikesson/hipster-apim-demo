@@ -1,5 +1,5 @@
 # Voice/Chat Assistant Demo
-*Exposing the REST API via Apigee and building a voice/chat client app* 
+*Exposing the Hipster Shop REST API via Apigee and building a voice/chat client app* 
 
 Previously, the Hipster Shop Website has been spun up and configured as an Apigee-registered application with an associated API Key consuming an API Product which contains services such as:
 ```
